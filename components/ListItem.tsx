@@ -1,11 +1,21 @@
 import {View, TouchableOpacity, Text} from "react-native";
+// @ts-ignore
 import Entypo from "react-native-vector-icons/Entypo";
 import useStyles from "./useStyles";
-import PropTypes from "prop-types";
 
 const style = useStyles();
 
-const ListItem = ({item, deleteItem}) => {
+interface Item {
+    id: number;
+    text: string;
+}
+
+interface ListItemProps {
+    item: Item;
+    deleteItem: (id: number) => void;
+}
+
+const ListItem = ({item, deleteItem}: ListItemProps) => {
 
     return (
 
@@ -20,11 +30,5 @@ const ListItem = ({item, deleteItem}) => {
         </TouchableOpacity>
     );
 };
-
-ListItem.propTypes = {
-
-    item: PropTypes.object.isRequired,
-    deleteItem: PropTypes.func.isRequired
-}
 
 export default ListItem;

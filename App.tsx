@@ -7,13 +7,10 @@ import AddItem from "./components/AddItem";
 
 export default function App() {
 
-  const [items, setItems] = useState([
-
-    {id: 1, text: "Milk"}
-  ]);
+  const [items, setItems] = useState([{id: 1, text: "Milk"}]);
 
 
-  const deleteItem = (id) => {
+  const deleteItem = (id: number) => {
 
     setItems(previousItem => {
 
@@ -21,7 +18,8 @@ export default function App() {
     })
   };
 
-  const addItem = (text) => {
+
+  const addItem = (text: string) => {
 
     if (!text) {
 

@@ -1,17 +1,21 @@
 import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import Entypo from "react-native-vector-icons/Entypo";
 import useStyles from "./useStyles";
-import PropTypes from "prop-types";
+// @ts-ignore
+import Entypo from "react-native-vector-icons/Entypo";
 
 const style = useStyles();
 
-const AddItem = ({addItem}) => {
+interface AddItemProps {
+    addItem: (text: string) => void;
+}
+
+const AddItem = ({addItem}: AddItemProps) => {
 
     const [text, setText] = useState('');
 
 
-    const handleChangeText = (textValue) => {
+    const handleChangeText = (textValue: string) => {
 
         setText(textValue);
     };
@@ -40,9 +44,5 @@ const AddItem = ({addItem}) => {
     );
 };
 
-AddItem.propTypes = {
-
-    addItem: PropTypes.func.isRequired
-}
 
 export default AddItem;
