@@ -37,7 +37,7 @@ const AddItem = ({addItem}: AddItemProps) => {
                     setText('');
                 }}>
                 <Text style={style.btnText}>
-                    <Entypo name="plus" size={24} color="black" /> Add Item
+                    <Entypo name="plus" size={24} color="black"/> Add Item
                 </Text>
             </TouchableOpacity>
         </View>

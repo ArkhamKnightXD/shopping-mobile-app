@@ -24,7 +24,7 @@ const ListItem = ({item, deleteItem}: ListItemProps) => {
             <View style={style.listItemView}>
                 <Text style={style.listItemText}>{item.text}</Text>
 
-                <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black" />
+                <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black"/>
 
             </View>
         </TouchableOpacity>
