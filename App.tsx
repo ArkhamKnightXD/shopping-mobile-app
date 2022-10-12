@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {/*useEffect,*/ useState} from 'react';
 import {View, FlatList, Alert, Text} from 'react-native';
 import ListItem from "./components/ListItem";
 import AddItem from "./components/AddItem";
@@ -10,21 +10,40 @@ import ModalNative from "./components/ModalNative";
 
 const style = useStyles();
 
+//Las interfaces pueden exportarse para asi no tener que definirla varias veces.
+export interface Item {
+    id: number;
+    text: string;
+}
+
+const initialState: Item = {id: 1, text: "Milk"};
+
 export default function App() {
 
-    const [items, setItems] = useState([{id: 1, text: "Milk"}]);
+    const [items, setItems] = useState<Item[]>([initialState]);
+    const [actualItem, setActualItem] = useState<Item>(initialState);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+
     // const [videoGames, setVideoGames] = useState([]);
     //
-    useEffect(() => {
+    // useEffect(() => {
+    //
+    //     axios.get(`${URL}/api/v1/video-games`).then(response => {
+    //
+    //         console.log("Data", response.data);
+    //
+    //         setVideoGames(response.data);
+    //     });
+    //
+    // }, []);
 
-        // axios.get(`${URL}/api/v1/video-games`).then(response => {
-        //
-        //     console.log("Data", response.data);
-        //
-        //     setVideoGames(response.data);
-        // });
+    const openModal = (actualItem: Item) => {
 
-    }, []);
+        setActualItem(actualItem);
+
+        setIsModalVisible(true);
+    };
 
 
     const deleteItem = (id: number) => {
@@ -62,11 +81,10 @@ export default function App() {
             <AddItem addItem={addItem}/>
 
             <FlatList data={items} renderItem={({item}) => (
-                <ListItem item={item} deleteItem={deleteItem}/>
+                <ListItem item={item} deleteItem={deleteItem} openModal={openModal}/>
             )}/>
 
-            <ModalNative/>
-
+            <ModalNative isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} actualItem={actualItem}/>
         </View>
     );
 }

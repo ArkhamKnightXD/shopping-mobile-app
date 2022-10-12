@@ -1,37 +1,36 @@
-import {useState} from 'react';
 import {Pressable, View, Text, Modal} from "react-native";
 import useModalStyle from "./useModalStyle";
+import {Item} from "../App";
 
 const styles = useModalStyle();
 
-const ModalNative = () => {
+interface ModalNativeProps {
+    isModalVisible: boolean;
+    setIsModalVisible: (value: boolean) => void;
+    actualItem: Item;
+}
 
-    const [modalVisible, setModalVisible] = useState(false);
-
+const ModalNative = ({isModalVisible, setIsModalVisible, actualItem}: ModalNativeProps) => {
 
     return (
         <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(!modalVisible)}>
+                visible={isModalVisible}
+                onRequestClose={() => setIsModalVisible(!isModalVisible)}>
 
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Text style={styles.modalText}>{actualItem.text}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}>
+                            onPress={() => setIsModalVisible(!isModalVisible)}>
                             <Text style={styles.textStyle}>Hide Modal</Text>
                         </Pressable>
                     </View>
                 </View>
             </Modal>
-
-            <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
-                <Text style={styles.textStyle}>Show Modal</Text>
-            </Pressable>
         </View>
     );
 };
