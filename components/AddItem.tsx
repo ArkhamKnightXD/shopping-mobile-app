@@ -22,24 +22,24 @@ const AddItem = ({addItem}: AddItemProps) => {
     };
 
 
+    const handleAddItem = (text: string) => {
+
+        addItem(text);
+        setText("");
+    };
+
+
     return (
         <View>
 
-            <TextInput
-                placeholder="Add Item..."
-                style={style.input}
-                onChangeText={handleChangeText}
-                value={text}
-            />
-            <TouchableOpacity
-                style={style.btn}
-                onPress={() => {
-                    addItem(text);
-                    setText('');
-                }}>
+            <TextInput placeholder="Add Item..." style={style.input} onChangeText={handleChangeText} value={text}/>
+
+            <TouchableOpacity style={style.btn} onPress={() => handleAddItem(text)}>
 
                 <Text style={style.btnText}><Entypo name="plus" size={24} color="white"/> Add Item</Text>
+
             </TouchableOpacity>
+
         </View>
     );
 };

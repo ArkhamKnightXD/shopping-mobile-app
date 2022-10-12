@@ -19,10 +19,11 @@ const ListItem = ({item, deleteItem, openModal}: ListItemProps) => {
         <TouchableOpacity style={style.listItem}>
 
             <View style={style.listItemView}>
+
                 <Text style={style.listItemText}>{item.text}</Text>
+                <Text style={style.listItemText}>{item.price}</Text>
 
                 <Entypo onPress={() => openModal(item)} name="plus" size={24} color="black"/>
-
                 <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black"/>
 
             </View>

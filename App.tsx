@@ -14,9 +14,10 @@ const style = useStyles();
 export interface Item {
     id: number;
     text: string;
+    price: number;
 }
 
-const initialState: Item = {id: 1, text: "Milk"};
+const initialState: Item = {id: 1, text: "Milk", price: 10.99};
 
 export default function App() {
 
@@ -64,7 +65,7 @@ export default function App() {
 
             setItems(previousItem => {
 
-                return [{id: Math.random(), text}, ...previousItem];
+                return [{id: Math.random(), text, price: 0}, ...previousItem];
             });
         }
     };
@@ -84,7 +85,8 @@ export default function App() {
                 <ListItem item={item} deleteItem={deleteItem} openModal={openModal}/>
             )}/>
 
-            <ModalNative isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} actualItem={actualItem}/>
+            <ModalNative isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}
+                         actualItem={actualItem}  items={items} setItems={setItems}/>
         </View>
     );
 }
