@@ -1,10 +1,10 @@
 import {View, TouchableOpacity, Text} from "react-native";
 // @ts-ignore
 import Entypo from "react-native-vector-icons/Entypo";
-import useStyles from "./useStyles";
+import useGeneralStyles from "./useGeneralStyles";
 import {Item} from "../App";
 
-const style = useStyles();
+const style = useGeneralStyles();
 
 interface ListItemProps {
     item: Item;
@@ -20,8 +20,8 @@ const ListItem = ({item, deleteItem, openModal}: ListItemProps) => {
 
             <View style={style.listItemView}>
 
-                <Text style={style.listItemText}>{item.text}</Text>
-                <Text style={style.listItemText}>{item.price}</Text>
+                <Text style={style.listItemText}>{item.name}</Text>
+                <Text style={style.listItemText}>{item.sellPrice}</Text>
 
                 <Entypo onPress={() => openModal(item)} name="plus" size={24} color="black"/>
                 <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black"/>

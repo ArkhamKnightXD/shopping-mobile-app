@@ -1,51 +1,65 @@
 import {Pressable, View, Text, Modal, TextInput} from "react-native";
 import useModalStyle from "./useModalStyle";
 import {Item} from "../App";
-import {useState} from "react";
-import useStyles from "./useStyles";
+import {useEffect, useState} from "react";
+import useGeneralStyles from "./useGeneralStyles";
+import axios from "axios";
 
 const style = useModalStyle();
-const styles = useStyles();
+const styles = useGeneralStyles();
 
 interface ModalNativeProps {
+
     isModalVisible: boolean;
     setIsModalVisible: (value: boolean) => void;
     actualItem: Item;
-    items: Item[];
     setItems: (value: Item[]) => void;
 }
 
-const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, items, setItems}: ModalNativeProps) => {
+const URL = "http://localhost:88";
 
-    const [text, setText] = useState('');
+const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: ModalNativeProps) => {
+
+    const [name, setName] = useState("");
+    const [sellPrice, setSellPrice] = useState("0");
 
 
-    const handleChangeText = (textValue: string) => {
+    useEffect(() => {
 
-        setText(textValue);
+        if(isModalVisible){
+
+            setName(actualItem.name);
+            setSellPrice(actualItem.sellPrice.toString());
+        }
+
+    }, [isModalVisible]);
+
+
+
+    const handleChangeName = (name: string) => {
+
+        setName(name);
     };
 
 
-    const getActualItem = (actualId: number): Item | undefined => {
+    const handleChangePrice = (price: string) => {
 
-         return items.find(item => item.id == actualId);
+        setSellPrice(price);
     };
 
 
-    const handleAddPrice = (actualPrice: number) => {
+    const handleAddPrice = () => {
 
-        // let item = getActualItem(actualItem.id);
+        const updatedItem: Item = {id: actualItem.id, name,  sellPrice: parseInt(sellPrice)};
 
-        items.map((item)=> {
+        axios.put(`${URL}/api/v1/video-games`, updatedItem).then(response => {
 
-            if(item.id == actualItem.id)
-                item.price = actualPrice;
-        })
-
-        // item.price = price;
+            setItems(response.data);
+        });
 
         setIsModalVisible(false);
     };
+
 
     return (
         <View style={style.centeredView}>
@@ -57,13 +71,16 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, items, setI
 
                 <View style={style.centeredView}>
                     <View style={style.modalView}>
-                        <TextInput placeholder="Add Item..." style={styles.input}
-                                   onChangeText={handleChangeText} value={text}/>
 
-                        <Text style={style.modalText}>{actualItem.text} - price: {actualItem.price}</Text>
+                        <TextInput placeholder="name..." style={styles.input}
+                                   onChangeText={handleChangeName} value={name}/>
+
+                        <TextInput placeholder="price..." style={styles.input}
+                                   onChangeText={handleChangePrice} value={sellPrice}/>
+
                         <Pressable
                             style={[style.button, style.buttonClose]}
-                            onPress={() => getActualItem(actualItem.id)}>
+                            onPress={() => handleAddPrice()}>
                             <Text style={style.textStyle}>OK</Text>
                         </Pressable>
 

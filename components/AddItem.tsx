@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import useStyles from "./useStyles";
+import useGeneralStyles from "./useGeneralStyles";
 // @ts-ignore
 import Entypo from "react-native-vector-icons/Entypo";
 
-const style = useStyles();
+const style = useGeneralStyles();
 
 interface AddItemProps {
 

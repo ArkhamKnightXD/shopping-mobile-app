@@ -1,23 +1,23 @@
-import {/*useEffect,*/ useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View, FlatList, Alert, Text} from 'react-native';
 import ListItem from "./components/ListItem";
 import AddItem from "./components/AddItem";
-import useStyles from "./components/useStyles";
+import useGeneralStyles from "./components/useGeneralStyles";
 import ModalNative from "./components/ModalNative";
-// import axios from "axios";
+import axios from "axios";
 
-// const URL = "http://localhost:88";
+const URL = "http://localhost:88";
 
-const style = useStyles();
+const style = useGeneralStyles();
 
 //Las interfaces pueden exportarse para asi no tener que definirla varias veces.
 export interface Item {
     id: number;
-    text: string;
-    price: number;
+    name: string;
+    sellPrice: number;
 }
 
-const initialState: Item = {id: 1, text: "Milk", price: 10.99};
+const initialState: Item = {id: 1, name: "Milk", sellPrice: 10.99};
 
 export default function App() {
 
@@ -27,17 +27,16 @@ export default function App() {
 
 
     // const [videoGames, setVideoGames] = useState([]);
-    //
-    // useEffect(() => {
-    //
-    //     axios.get(`${URL}/api/v1/video-games`).then(response => {
-    //
-    //         console.log("Data", response.data);
-    //
-    //         setVideoGames(response.data);
-    //     });
-    //
-    // }, []);
+
+    useEffect(() => {
+
+        axios.get(`${URL}/api/v1/video-games`).then(response => {
+
+            setItems(response.data);
+        });
+
+    }, []);
+
 
     const openModal = (actualItem: Item) => {
 
@@ -47,12 +46,22 @@ export default function App() {
     };
 
 
-    const deleteItem = (id: number) => {
+    //Forma para eliminar elementos de un arreglo useState
+    // const deleteItem = (id: number) => {
+    //
+    //     setItems(previousItem => {
+    //
+    //         return previousItem.filter(item => item.id !== id);
+    //     })
+    // };
 
-        setItems(previousItem => {
 
-            return previousItem.filter(item => item.id !== id);
-        })
+    const deleteItem = (itemId: number) => {
+
+        axios.delete(`${URL}/api/v1/video-games/${itemId}`).then(response => {
+
+            setItems(response.data);
+        });
     };
 
 
@@ -65,7 +74,7 @@ export default function App() {
 
             setItems(previousItem => {
 
-                return [{id: Math.random(), text, price: 0}, ...previousItem];
+                return [{id: Math.random(), name: text, sellPrice: 0}, ...previousItem];
             });
         }
     };
@@ -86,7 +95,7 @@ export default function App() {
             )}/>
 
             <ModalNative isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}
-                         actualItem={actualItem}  items={items} setItems={setItems}/>
+                         actualItem={actualItem} setItems={setItems}/>
         </View>
     );
 }

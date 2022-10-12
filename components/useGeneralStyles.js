@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-const useStyles = () => {
+const useGeneralStyles = () => {
 
     return StyleSheet.create({
 
@@ -59,6 +59,6 @@ const useStyles = () => {
     });
 };
 
-export default useStyles;
+export default useGeneralStyles;
 
 
