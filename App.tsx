@@ -3,6 +3,7 @@ import {View, FlatList, Alert, Text} from 'react-native';
 import ListItem from "./components/ListItem";
 import AddItem from "./components/AddItem";
 import useStyles from "./components/useStyles";
+import ModalNative from "./components/ModalNative";
 // import axios from "axios";
 
 // const URL = "http://localhost:88";
@@ -44,7 +45,7 @@ export default function App() {
 
             setItems(previousItem => {
 
-                return [{id: 5, text}, ...previousItem];
+                return [{id: Math.random(), text}, ...previousItem];
             });
         }
     };
@@ -63,6 +64,8 @@ export default function App() {
             <FlatList data={items} renderItem={({item}) => (
                 <ListItem item={item} deleteItem={deleteItem}/>
             )}/>
+
+            <ModalNative/>
 
         </View>
     );
