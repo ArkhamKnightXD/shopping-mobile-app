@@ -13,7 +13,7 @@ interface AddItemProps {
 
 const AddItem = ({addItem}: AddItemProps) => {
 
-    const [text, setText] = useState('');
+    const [text, setText] = useState("");
 
 
     const handleChangeText = (textValue: string) => {

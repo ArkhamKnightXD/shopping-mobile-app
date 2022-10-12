@@ -10,6 +10,7 @@ const useModalStyle = () => {
             marginTop: 22,
         },
         modalView: {
+            width: 200,
             margin: 20,
             backgroundColor: 'white',
             borderRadius: 20,

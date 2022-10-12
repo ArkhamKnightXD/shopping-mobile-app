@@ -81,7 +81,7 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
                         <Pressable
                             style={[style.button, style.buttonClose]}
                             onPress={() => handleAddPrice()}>
-                            <Text style={style.textStyle}>OK</Text>
+                            <Text style={style.textStyle}>Save Changes</Text>
                         </Pressable>
 
                     </View>
