@@ -5,26 +5,31 @@ const useStyles = () => {
     return StyleSheet.create({
 
         input: {
-            height: 60,
-            padding: 8,
-            margin: 5,
+            height: 40,
+            padding: 5,
+            margin: 5
         },
+
         btn: {
-            backgroundColor: '#c2bad8',
-            padding: 9,
+            backgroundColor: '#060618',
+            padding: 10,
             margin: 5,
+            borderRadius: 10
         },
+
         btnText: {
-            color: 'darkslateblue',
+            color: 'white',
             fontSize: 20,
             textAlign: 'center',
         },
 
         listItem: {
-            padding: 15,
-            backgroundColor: '#f8f8f8',
+            padding: 10,
+            margin: 5,
+            backgroundColor: '#eae4e4',
             borderBottomWidth: 1,
-            borderColor: '#eee'
+            borderColor: '#eee',
+            borderRadius: 10
         },
 
         listItemView: {
@@ -36,19 +41,19 @@ const useStyles = () => {
 
         listItemText: {
 
-            fontSize: 18
+            fontSize: 20
         },
 
         header: {
             height: 60,
-            padding: 15,
-            backgroundColor: "#252590"
+            paddingTop: 32,
+            backgroundColor: "#010106"
         },
 
         text: {
 
             color: "#fff",
-            fontSize: 23,
+            fontSize: 20,
             textAlign: "center"
         }
     });

@@ -7,6 +7,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 const style = useStyles();
 
 interface AddItemProps {
+
     addItem: (text: string) => void;
 }
 
@@ -36,9 +37,8 @@ const AddItem = ({addItem}: AddItemProps) => {
                     addItem(text);
                     setText('');
                 }}>
-                <Text style={style.btnText}>
-                    <Entypo name="plus" size={24} color="black"/> Add Item
-                </Text>
+
+                <Text style={style.btnText}><Entypo name="plus" size={24} color="white"/> Add Item</Text>
             </TouchableOpacity>
         </View>
     );

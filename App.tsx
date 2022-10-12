@@ -1,13 +1,13 @@
-import {StatusBar} from 'expo-status-bar';
 import {useEffect, useState} from 'react';
-import {View, FlatList, Alert} from 'react-native';
-import Header from "./components/Header";
+import {View, FlatList, Alert, Text} from 'react-native';
 import ListItem from "./components/ListItem";
 import AddItem from "./components/AddItem";
+import useStyles from "./components/useStyles";
 // import axios from "axios";
 
 // const URL = "http://localhost:88";
 
+const style = useStyles();
 
 export default function App() {
 
@@ -37,10 +37,10 @@ export default function App() {
 
     const addItem = (text: string) => {
 
-        if (!text) {
-
+        if (!text)
             Alert.alert("Error", "Please enter an item");
-        } else {
+
+        else {
 
             setItems(previousItem => {
 
@@ -54,15 +54,15 @@ export default function App() {
 
         <View style={{flex: 1}}>
 
-            <Header title={"Shopping List"}/>
+            <View style={style.header}>
+                <Text style={style.text}>Shopping List</Text>
+            </View>
 
             <AddItem addItem={addItem}/>
 
             <FlatList data={items} renderItem={({item}) => (
                 <ListItem item={item} deleteItem={deleteItem}/>
             )}/>
-
-            <StatusBar style="auto"/>
 
         </View>
     );
