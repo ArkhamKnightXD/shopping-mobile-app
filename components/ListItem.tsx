@@ -1,18 +1,29 @@
-import {View, TouchableOpacity, Text} from "react-native";
 // @ts-ignore
 import Entypo from "react-native-vector-icons/Entypo";
+import {View, TouchableOpacity, Text} from "react-native";
 import useGeneralStyles from "./useGeneralStyles";
-import {Item} from "../App";
+import {API_URL, Item} from "../App";
+import axios from "axios";
 
 const style = useGeneralStyles();
 
 interface ListItemProps {
+
     item: Item;
-    deleteItem: (id: number) => void;
+    setItems: (value: Item[]) => void;
     openModal: (actualItem: Item) => void;
 }
 
-const ListItem = ({item, deleteItem, openModal}: ListItemProps) => {
+const ListItem = ({item, setItems, openModal}: ListItemProps) => {
+
+    const deleteItem = (itemId: number) => {
+
+        axios.delete(`${API_URL}/api/v1/video-games/${itemId}`).then(response => {
+
+            setItems(response.data);
+        });
+    };
+
 
     return (
 

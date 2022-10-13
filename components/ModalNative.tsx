@@ -1,12 +1,12 @@
 import {Pressable, View, Text, Modal, TextInput} from "react-native";
 import useModalStyle from "./useModalStyle";
-import {Item} from "../App";
+import {API_URL, Item} from "../App";
 import {useEffect, useState} from "react";
 import useGeneralStyles from "./useGeneralStyles";
 import axios from "axios";
 
 const style = useModalStyle();
-const styles = useGeneralStyles();
+const inputStyles = useGeneralStyles();
 
 interface ModalNativeProps {
 
@@ -15,8 +15,6 @@ interface ModalNativeProps {
     actualItem: Item;
     setItems: (value: Item[]) => void;
 }
-
-const URL = "http://localhost:88";
 
 const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: ModalNativeProps) => {
 
@@ -35,7 +33,6 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
     }, [isModalVisible]);
 
 
-
     const handleChangeName = (name: string) => {
 
         setName(name);
@@ -48,11 +45,11 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
     };
 
 
-    const handleAddPrice = () => {
+    const handleUpdateItem = () => {
 
         const updatedItem: Item = {id: actualItem.id, name,  sellPrice: parseInt(sellPrice)};
 
-        axios.put(`${URL}/api/v1/video-games`, updatedItem).then(response => {
+        axios.put(`${API_URL}/api/v1/video-games`, updatedItem).then(response => {
 
             setItems(response.data);
         });
@@ -67,25 +64,26 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
                 animationType="slide"
                 transparent={true}
                 visible={isModalVisible}
-                onRequestClose={() => setIsModalVisible(!isModalVisible)}>
+                onRequestClose={() => setIsModalVisible(false)}>
 
                 <View style={style.centeredView}>
                     <View style={style.modalView}>
 
-                        <TextInput placeholder="name..." style={styles.input}
+                        <TextInput placeholder="name..." style={inputStyles.input}
                                    onChangeText={handleChangeName} value={name}/>
 
-                        <TextInput placeholder="price..." style={styles.input}
+                        <TextInput placeholder="price..." style={inputStyles.input}
                                    onChangeText={handleChangePrice} value={sellPrice}/>
 
                         <Pressable
                             style={[style.button, style.buttonClose]}
-                            onPress={() => handleAddPrice()}>
+                            onPress={() => handleUpdateItem()}>
                             <Text style={style.textStyle}>Save Changes</Text>
                         </Pressable>
 
                     </View>
                 </View>
+
             </Modal>
         </View>
     );

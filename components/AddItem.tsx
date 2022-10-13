@@ -1,17 +1,19 @@
+// @ts-ignore
+import Entypo from "react-native-vector-icons/Entypo";
 import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import useGeneralStyles from "./useGeneralStyles";
-// @ts-ignore
-import Entypo from "react-native-vector-icons/Entypo";
+import {API_URL, Item} from "../App";
+import axios from "axios";
 
 const style = useGeneralStyles();
 
 interface AddItemProps {
 
-    addItem: (text: string) => void;
+    setItems: (value: Item[]) => void;
 }
 
-const AddItem = ({addItem}: AddItemProps) => {
+const AddItem = ({setItems}: AddItemProps) => {
 
     const [text, setText] = useState("");
 
@@ -22,9 +24,15 @@ const AddItem = ({addItem}: AddItemProps) => {
     };
 
 
-    const handleAddItem = (text: string) => {
+    const handleAddItem = () => {
 
-        addItem(text);
+        const itemToSave = {name: text, sellPrice: 0};
+
+        axios.post(`${API_URL}/api/v1/video-games`, itemToSave).then(response => {
+
+            setItems(response.data);
+        });
+
         setText("");
     };
 
@@ -34,9 +42,9 @@ const AddItem = ({addItem}: AddItemProps) => {
 
             <TextInput placeholder="Add Item..." style={style.input} onChangeText={handleChangeText} value={text}/>
 
-            <TouchableOpacity style={style.btn} onPress={() => handleAddItem(text)}>
+            <TouchableOpacity style={style.btn} onPress={() => handleAddItem()}>
 
-                <Text style={style.btnText}><Entypo name="plus" size={24} color="white"/> Add Item</Text>
+                <Text style={style.btnText}><Entypo name="plus" size={24} color="white"/>Add Item</Text>
 
             </TouchableOpacity>
 
