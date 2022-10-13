@@ -73,13 +73,21 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
                                    onChangeText={handleChangeName} value={name}/>
 
                         <TextInput placeholder="price..." style={inputStyles.input}
-                                   onChangeText={handleChangePrice} value={sellPrice}/>
+                                   textContentType="password" onChangeText={handleChangePrice} value={sellPrice}/>
 
-                        <Pressable
-                            style={[style.button, style.buttonClose]}
-                            onPress={() => handleUpdateItem()}>
-                            <Text style={style.textStyle}>Save Changes</Text>
-                        </Pressable>
+                        <View style={{flexDirection:"row", justifyContent: "space-between" }}>
+
+                            <Pressable style={[style.button, style.buttonClose]}
+                                onPress={() => setIsModalVisible(false)}>
+                                <Text style={style.textStyle}>Cancel</Text>
+                            </Pressable>
+
+                            <Pressable style={[style.button, style.buttonClose]}
+                                       onPress={() => handleUpdateItem()}>
+                                <Text style={style.textStyle}>Save Changes</Text>
+                            </Pressable>
+
+                        </View>
 
                     </View>
                 </View>

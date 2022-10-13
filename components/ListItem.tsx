@@ -1,6 +1,6 @@
 // @ts-ignore
 import Entypo from "react-native-vector-icons/Entypo";
-import {View, TouchableOpacity, Text} from "react-native";
+import {View, TouchableOpacity, Text, Pressable} from "react-native";
 import useGeneralStyles from "./useGeneralStyles";
 import {API_URL, Item} from "../App";
 import axios from "axios";
@@ -31,10 +31,10 @@ const ListItem = ({item, setItems, openModal}: ListItemProps) => {
 
             <View style={style.listItemView}>
 
-                <Text style={style.listItemText}>{item.name}</Text>
-                <Text style={style.listItemText}>{item.sellPrice}</Text>
+                <Pressable onPress={() => openModal(item)}>
+                    <Text style={style.listItemText}>{item.name}</Text>
+                </Pressable>
 
-                <Entypo onPress={() => openModal(item)} name="plus" size={24} color="black"/>
                 <Entypo onPress={() => deleteItem(item.id)} name="minus" size={24} color="black"/>
 
             </View>

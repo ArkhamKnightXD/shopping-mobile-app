@@ -25,7 +25,7 @@ const useGeneralStyles = () => {
 
         listItem: {
             padding: 10,
-            margin: 5,
+            margin: 3,
             backgroundColor: '#eae4e4',
             borderBottomWidth: 1,
             borderColor: '#eee',

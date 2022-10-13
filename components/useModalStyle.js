@@ -10,7 +10,7 @@ const useModalStyle = () => {
             marginTop: 22,
         },
         modalView: {
-            width: 200,
+            width: 250,
             margin: 20,
             backgroundColor: 'white',
             borderRadius: 20,
@@ -34,6 +34,7 @@ const useModalStyle = () => {
             backgroundColor: '#000000',
         },
         buttonClose: {
+            margin: 2,
             backgroundColor: '#000000',
         },
         textStyle: {

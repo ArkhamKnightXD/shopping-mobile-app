@@ -6,6 +6,7 @@ import useGeneralStyles from "./components/useGeneralStyles";
 import ModalNative from "./components/ModalNative";
 import axios from "axios";
 
+//Las peticiones en localhost por alguna razón en el celular falla, pero si la petición se hace a un servidor no falla.
 export const API_URL = "http://localhost:88";
 
 const style = useGeneralStyles();
