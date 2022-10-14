@@ -38,6 +38,7 @@ const AddItem = ({setItems}: AddItemProps) => {
 
 
     return (
+
         <View>
 
             <TextInput placeholder="Add Item..." style={style.input} onChangeText={handleChangeText} value={text}/>
