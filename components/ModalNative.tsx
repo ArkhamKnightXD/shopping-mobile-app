@@ -49,7 +49,7 @@ const ModalNative = ({isModalVisible, setIsModalVisible, actualItem, setItems}: 
 
         const updatedItem: Item = {id: actualItem.id, name,  sellPrice: parseInt(sellPrice)};
 
-        axios.put(`${API_URL}/api/v1/video-games`, updatedItem).then(response => {
+        axios.put(`${API_URL}/api/v1/games/`, updatedItem).then(response => {
 
             setItems(response.data);
         });

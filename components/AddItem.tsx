@@ -28,7 +28,7 @@ const AddItem = ({setItems}: AddItemProps) => {
 
         const itemToSave = {name: text, sellPrice: 0};
 
-        axios.post(`${API_URL}/api/v1/video-games`, itemToSave).then(response => {
+        axios.post(`${API_URL}/api/v1/games/`, itemToSave).then(response => {
 
             setItems(response.data);
         });

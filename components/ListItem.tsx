@@ -18,7 +18,7 @@ const ListItem = ({item, setItems, openModal}: ListItemProps) => {
 
     const deleteItem = (itemId: number) => {
 
-        axios.delete(`${API_URL}/api/v1/video-games/${itemId}`).then(response => {
+        axios.delete(`${API_URL}/api/v1/games/${itemId}`).then(response => {
 
             setItems(response.data);
         });

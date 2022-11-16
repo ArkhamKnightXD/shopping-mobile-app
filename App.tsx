@@ -5,7 +5,7 @@ import AddItem from "./components/AddItem";
 import useGeneralStyles from "./components/useGeneralStyles";
 import ModalNative from "./components/ModalNative";
 import axios from "axios";
-import ItemCard from "./components/ItemCard";
+// import ItemCard from "./components/ItemCard";
 
 //Las peticiones en localhost por alguna razón en el celular falla, pero si la petición se hace a un servidor no falla.
 export const API_URL = "http://localhost:88";
@@ -31,7 +31,7 @@ export default function App() {
 
     useEffect(() => {
 
-        axios.get(`${API_URL}/api/v1/video-games`).then(response => {
+        axios.get(`${API_URL}/api/v1/games/`).then(response => {
 
             setItems(response.data);
         });
@@ -64,7 +64,7 @@ export default function App() {
             <ModalNative isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}
                          actualItem={actualItem} setItems={setItems}/>
 
-            <ItemCard/>
+            {/*<ItemCard/>*/}
         </View>
     );
 }
